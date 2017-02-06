@@ -27,7 +27,7 @@ class DocManager (SingletonMixin):
     def __init__(self):
         self.dm = defaultdict(list) #dict()
         
-    def add(self, docName, tokenList, docName):
+    def add(self, docName, tokenList):
         logging.debug("Adding %d tokens from %s" % (len(tokenList), docName))
         for t in tokenList:
             self.tdm.setdefault(t, []).append(docName)

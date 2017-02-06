@@ -48,19 +48,18 @@ logging.info("Garble web server starting up on port %d" % args.serverport)
 logging.getLogger("requests").setLevel(logging.CRITICAL)
 
 tdm = TDM.instance()
-es =  Elasticsearch()
 print ("Garble is ready\n")
 
 application = tornado.web.Application([
     (r"/"                      , MainHandler, { 'tdm' : tdm})
    
     # DocHandler.py
-   , (r"/getdoc/(.*)"           , DocHandler, {'tdm' : tdm, 'es' : es})
-   , (r"/postdoc"               , DocHandler, {'tdm' : tdm, 'es' : es})
+   , (r"/getdoc/(.*)"           , DocHandler, {'tdm' : tdm})
+   , (r"/postdoc"               , DocHandler, {'tdm' : tdm})
 
    # SearchHandler.py
-    , (r"/status"              , SearchHandler, {'tdm' : tdm, 'es' : es})
-    , (r"/search/(.*)"         , SearchHandler, {'tdm' : tdm, 'es' : es})
+    , (r"/status"              , SearchHandler, {'tdm' : tdm})
+    , (r"/search/(.*)"         , SearchHandler, {'tdm' : tdm})
     , (r"/index/(.*)"          , IndexHandler, {'tdm':tdm})
     , (r"/quit"                , QuitHandler)
     , (r"/listeners/(.*)"      , ListenerHandler)

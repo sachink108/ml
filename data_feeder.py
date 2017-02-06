@@ -24,7 +24,7 @@ def readDir(path):
             #raw_input()
 
 def main():
-    dataFolder = "G:\\SachinK\\progs\\search\\data\\20_newsgroups"
+    dataFolder = ".\\data\\20_newsgroups"
     readDir(dataFolder)
 
 main()

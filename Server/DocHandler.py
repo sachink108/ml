@@ -13,7 +13,6 @@ from TParser import TParser
 class DocHandler(tornado.web.RequestHandler):
     def initialize(self, tdm):
         self._tdm = tdm
-        self._es = es
 
     # used by  Garble when returning search result
     def get(self, request):
@@ -28,11 +27,9 @@ class DocHandler(tornado.web.RequestHandler):
         dir = data['dir']
         filename = data['filename']
         content = data['content']
-        self._es.
-
-        #p1 = TParser(filename, content)
-        #p1.start()
-        #self.write({'status': 'queued doc' + filename})
+        p1 = TParser(filename, content)
+        p1.start()
+        self.write({'status': 'queued doc' + filename})
 
 #class DocStatHandler(tornado.web.RequestHandler):
 #    def initialize(self):

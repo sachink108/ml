@@ -10,8 +10,10 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
 from TermDocumentMatrix import TDM
+from DocManager import DocManager
 
 nltk.data.path.append("G:\\nltk_data")
+nltk.data.path.append("C:\\nltk_data")
 
 logging.basicConfig(level=logging.DEBUG, 
                     format='(%(threadName)-10s) %(message)s',)
@@ -24,7 +26,7 @@ class TParser(threading.Thread):
         self.docContent = docContent
         self.stemmed = defaultdict(int)
         self.thName = os.path.basename(self.doc)
-        threading.Thread.__init__(self, group=None, target=None, name=self.thName,verbose=None)
+        threading.Thread.__init__(self, group=None, target=None, name=self.thName)
         print ("Creating parser thread [%s] for doc %s" % (self.thName, self.doc))
         
     def run(self):
@@ -43,5 +45,5 @@ class TParser(threading.Thread):
             self.stemmed[self.ps.stem(w)] += 1
         logging.info("[%s] Stemmed Tokens = %d" % (self.thName, len(self.stemmed)))
         dm = DocManager.instance()
-        logging.debug("Got doc manager instance %s" % tdm);
+        logging.debug("Got doc manager instance %s" % dm);
         
