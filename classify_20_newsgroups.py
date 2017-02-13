@@ -44,7 +44,7 @@ class Corpus:
             nfiles = 0
             for name in files:
                 nfiles += 1
-                if nfiles == 50:
+                if nfiles == 10:
                     break
                 filename = os.path.join(dirpath, name)
                 category = filename.split("\\")[2]
@@ -142,19 +142,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-all_wordsf = nltk.FreqDist(w.lower() for w in all_words)
-print (all_wordsf.items())
-word_features = list(all_wordsf) # not taking a subset of all words for now
-
-featuresets = [(document_features(d), c) for (d,c) in documents]
-train_set, test_set = featuresets[4:], featuresets[:4]
-classifier = nltk.NaiveBayesClassifier.train(train_set)
-print (nltk.classify.accuracy(classifier, test_set))
-
-test_docs = [("Some tigers live in a zoo in New York".split(), "wildlife"),
-             ("Green is a color in a damp setting".split(), "art"),
-             ("London if famous for its zoo".split(), "lifestyle"),
-            ]
-for td in test_docs:
-    print(classifier.classify(document_features(td[0])))
-#print (ret)
