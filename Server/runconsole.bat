@@ -1,1 +1,0 @@
-console-server.py --project-root ..\..\ --serverport 9010
